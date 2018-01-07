@@ -27,6 +27,8 @@ int main(void){
 	sem_init(&amplitude_2_s, 0 , 1);
 	sem_init(&pitch_s, 0 , 1);
 	sem_init(&pitch_2_s, 0 , 1);
+	sem_init(&filter_s, 0 , 1);
+	sem_init(&filter_2_s, 0 , 1);
 
 	// initialize graphic
     graphic_init();

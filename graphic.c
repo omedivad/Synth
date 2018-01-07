@@ -181,6 +181,60 @@ void *graphic_f(void *arg){
     al_draw_rectangle(XUPL_1, YLOR_1, XLOR_1, 3 * YLOR_1, bianco, 1);
     al_draw_rectangle(XUPL_1 + 400, YLOR_1, XLOR_1 + 400, 3 * YLOR_1, bianco, 1);
 
+    // filter buttons
+    sem_wait(&filter_s);
+      if(filter_sel == 0){
+        al_draw_filled_rectangle(XUPL_1 + 95, YUPL_1 + 2 + BTT2, XUPL_1 + 190, YUPL_1 + 22 + BTT2, giallo);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 285, YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 380, YUPL_1 + 22 + BTT2, nero);
+        al_draw_text(font_section, nero, XUPL_1 + 100, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No filter");
+        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "Saw");
+      }
+      if(filter_sel == 1){
+        al_draw_filled_rectangle(XUPL_1 + 95, YUPL_1 + 2 + BTT2, XUPL_1 + 190, YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 285, YUPL_1 + 22 + BTT2, giallo);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 380, YUPL_1 + 22 + BTT2, nero);
+        al_draw_text(font_section, bianco, XUPL_1 + 100, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No Filter");
+        al_draw_text(font_section, nero, XUPL_1 + 200, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "LPF");
+      }
+      if(filter_sel == 2){
+        al_draw_filled_rectangle(XUPL_1 + 95, YUPL_1 + 2 + BTT2, XUPL_1 + 190, YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 285, YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 380, YUPL_1 + 22 + BTT2, giallo);
+        al_draw_text(font_section, bianco, XUPL_1 + 100, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No Filter");
+        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, nero, XUPL_1 + 295, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "LPF");
+      }
+    sem_post(&filter_s);
+    sem_wait(&filter_2_s);
+      if(filter_sel_2 == 0){
+        al_draw_filled_rectangle(XUPL_1 + 95 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 190 + XOSC_2, YUPL_1 + 22 + BTT2, giallo);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22 + BTT2, nero);
+        al_draw_text(font_section, nero, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No Filter");
+        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, bianco, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "LPF");
+      }
+      if(filter_sel_2 == 1){
+        al_draw_filled_rectangle(XUPL_1 + 95 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 190 + XOSC_2, YUPL_1 + 22 + BTT2, nero);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22 + BTT2, giallo);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2 + BTT2, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22 + BTT2, nero);
+        al_draw_text(font_section, bianco, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No Filter");
+        al_draw_text(font_section, nero, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, bianco, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "LPF");
+      }
+      if(filter_sel_2 == 2){
+        al_draw_filled_rectangle(XUPL_1 + 95 + XOSC_2, YUPL_1 + 2 + 150, XUPL_1 + 190 + XOSC_2, YUPL_1 + 22 + 150, nero);
+        al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2 + 150, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22 + 150, nero);
+        al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2 + 150, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22 + 150, giallo);
+        al_draw_text(font_section, bianco, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2 + 150, ALLEGRO_ALIGN_LEFT, "No Filter");
+        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2 + 150, ALLEGRO_ALIGN_LEFT, "HPF");
+        al_draw_text(font_section, nero, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2 + 150, ALLEGRO_ALIGN_LEFT, "LPF");
+      }
+    sem_post(&filter_2_s);
+
     for(int i = 0; i<=BUFFER_LEN; i++){
       c = wave_va.head + i % BUFFER_LEN;
       al_draw_circle(400 - i, 400 + 100 * - extract_CA(&wave_va_flt), 1, bianco, 1);

@@ -96,7 +96,7 @@ void *handler_f(void *arg){
 		if(press_2 == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&amplitude_2_s);
-		    	amplitude_2 = amplitude_2 - (state.y + mouse_old_2) / 100;
+		    	amplitude_2 = amplitude_2 - (state.y + mouse_old_2);
 		    	if (amplitude_2 >= 1.0) amplitude_2 = 1.0;
 		    	if (amplitude_2 <= 0.0) amplitude_2 = 0.0;
 	    	sem_post(&amplitude_2_s);
@@ -171,6 +171,44 @@ void *handler_f(void *arg){
 	    		press_22 = 0;
 	    		printf("%d\n", press_2);
 			}
+		}
+
+		// filter button hanfling
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 95 < ev.mouse.x && ev.mouse.x < XUPL_1 + 190 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_s);
+		    	filter_sel = 0;
+		    sem_post(&filter_s);
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 195 < ev.mouse.x && ev.mouse.x < XUPL_1 + 285 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_s);
+		    	filter_sel = 1;
+		    sem_post(&filter_s);
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 290 < ev.mouse.x && ev.mouse.x < XUPL_1 + 380 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_s);
+		    	filter_sel = 2;
+		    sem_post(&filter_s);
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 495 < ev.mouse.x && ev.mouse.x < XUPL_1 + 590 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_2_s);
+		    	filter_sel_2 = 0;
+		    sem_post(&filter_2_s);
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 595 < ev.mouse.x && ev.mouse.x < XUPL_1 + 685 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_2_s);
+		    	filter_sel_2 = 1;
+		    sem_post(&filter_2_s);
+		}
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 690 < ev.mouse.x && ev.mouse.x < XUPL_1 + 780 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
+		    /* Primary (e.g. left) mouse button is held. */
+		    sem_wait(&filter_2_s);
+		    	filter_sel_2 = 2;
+		    sem_post(&filter_2_s);
 		}
 
 		// handling keyboard note

@@ -74,6 +74,8 @@ sem_t amplitude_s;
 sem_t amplitude_2_s;
 sem_t pitch_s;
 sem_t pitch_2_s;
+sem_t filter_s;
+sem_t filter_2_s;
 
 // audio
 static char *device = "default";                       //soundcard
