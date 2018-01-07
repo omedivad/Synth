@@ -13,6 +13,7 @@ void *filter_f(void *arg){
 				break;
 			case 1:
 				hd = get_tail(&wave_va);
+				tmp = 0;
 				for(int i=0; i<=HBL; i++){
 					// inverse index
 					j = hd - i % BUFFER_LEN;
@@ -26,6 +27,7 @@ void *filter_f(void *arg){
 				break;
 			case 2:
 				hd = get_tail(&wave_va);
+				tmp = 0;
 				for(int i=0; i<=LBL; i++){
 					// inverse index
 					j = hd - i % BUFFER_LEN;
@@ -46,6 +48,7 @@ void *filter_f(void *arg){
 				break;
 			case 1:
 				hd = get_tail(&wave_va_2);
+				tmp = 0;
 				for(int i=0; i<=HBL; i++){
 					// inverse index
 					j = hd - i % BUFFER_LEN;
@@ -59,6 +62,7 @@ void *filter_f(void *arg){
 				break;
 			case 2:
 				hd = get_tail(&wave_va_2);
+				tmp = 0;
 				for(int i=0; i<=LBL; i++){
 					// inverse index
 					j = hd - i % BUFFER_LEN;

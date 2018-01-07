@@ -34,7 +34,7 @@
 // Control variables
 int wave_sel = 0;
 int wave_sel_2 = 0;
-int filter_sel = 0;
+int filter_sel = 1;
 int filter_sel_2 = 0;
 
 // Error handler variables

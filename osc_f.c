@@ -54,11 +54,9 @@ void *osc_f(void *arg){
 		switch(sel){
 			case 0:
 				val = amp * sin(2 * PI * ff * x);
-				printf("%f val\n", val);
 				break;
 			case 1:
 				// traingular wave gen here
-				printf("%f val\n", val);
 				break;
 			case 2:
 				val = amp * fmod(x, 1 / ff) * ff;

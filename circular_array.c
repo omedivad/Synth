@@ -50,7 +50,6 @@ void increase_tail(c_queue *a){
 
 float extract_n_CA(c_queue *a, int idx){
 	float elem;
-	sem_wait(&a->emp);
 		sem_wait(&a->mtx);
 			elem = a->array[idx];
 		sem_post(&a->mtx);

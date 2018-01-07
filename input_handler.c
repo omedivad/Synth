@@ -96,9 +96,9 @@ void *handler_f(void *arg){
 		if(press_2 == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&amplitude_2_s);
-		    	amplitude_2 = amplitude_2 - state.y - mouse_old_2;
-		    	if (amplitude_2 >= 1) amplitude_2 = 1;
-		    	if (amplitude_2 <= -0) amplitude_2 = -0;
+		    	amplitude_2 = amplitude_2 - (state.y + mouse_old_2) / 100;
+		    	if (amplitude_2 >= 1.0) amplitude_2 = 1.0;
+		    	if (amplitude_2 <= 0.0) amplitude_2 = 0.0;
 	    	sem_post(&amplitude_2_s);
 		    mouse_old_2 = -state.y;
 		    printf("%d mouse old \n", mouse_old_2);

@@ -28,7 +28,7 @@ void *audio_f(void *arg){
 		if(wave_va.num >= BUFFER_LEN_AUDIO && wave_va_2.num >= BUFFER_LEN_AUDIO){
 			for (int i = 0; i < BUFFER_LEN_AUDIO; i++){
 				// writing wave on buffer
-				buffer[i] = extract_CA(&wave_va) + extract_CA(&wave_va_2);
+				buffer[i] = extract_CA(&wave_va_flt) + extract_CA(&wave_va_2_flt);
 			}
 		}
 
