@@ -183,12 +183,12 @@ void *graphic_f(void *arg){
 
     for(int i = 0; i<=BUFFER_LEN; i++){
       c = wave_va.head + i % BUFFER_LEN;
-      al_draw_circle(400 - i, 400 + 100 * - extract_CA(&wave_va), 1, bianco, 1);
+      al_draw_circle(400 - i, 400 + 100 * - extract_CA(&wave_va_flt), 1, bianco, 1);
     }
 
     for(int i = 0; i<=BUFFER_LEN; i++){
       c = wave_va_2.head + i % BUFFER_LEN;
-      al_draw_circle(400 + 400 - i, 400 + 100 * -extract_CA(&wave_va_2), 1, bianco, 1);
+      al_draw_circle(400 + 400 - i, 400 + 100 * -extract_CA(&wave_va_2_flt), 1, bianco, 1);
     }
 
     al_flip_display();

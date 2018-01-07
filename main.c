@@ -7,13 +7,16 @@ void init_allegro(void);
 int main(void){
 	
 	// pthreads
-	pthread_t osc, gra, hdlr, ado;
+	pthread_t osc, gra, hdlr,flt, ado;
 	pthread_attr_t hrt_attr, rt_attr;
 	struct sched_param hrt_param, rt_param;
 
 	// initializing OSC1 and OSC2 data array
 	init_CA(&wave_va);
 	init_CA(&wave_va_2);
+
+	init_CA(&wave_va_flt);
+	init_CA(&wave_va_2_flt);
 
 	// initialize semaphores
 	sem_init(&wave, 0 , 1);
@@ -37,17 +40,18 @@ int main(void){
 	pthread_create(&osc, &hrt_attr, osc_f, NULL);
 	//perror("ER_osc");
 
-	pthread_create(&gra, &rt_attr, graphic_f, NULL);
+	pthread_create(&gra, &hrt_attr, graphic_f, NULL);
 	//perror("ER_gra");
 
    	pthread_create(&hdlr, &hrt_attr, handler_f, NULL);
 	// perror("ER_hdlr");
 
+	pthread_create(&flt, &hrt_attr, filter_f, NULL);
+	perror("filter");
+
 	pthread_create(&ado, &hrt_attr, audio_f, NULL);
 	perror("audio");
 
-	// pthread_create(&grp, &hrt_attr, graph_f, NULL);
-	// perror("audio");
 
 	// destroy attr.s no longer useful
 	ctrl_var = pthread_attr_destroy(&rt_attr);

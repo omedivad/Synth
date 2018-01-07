@@ -30,3 +30,6 @@
 #include "graphic.c"
 #include "input_handler.c"
 #include "audio.c"
+#include "fdacoefs_hp_300.h"
+#include "fdacoefs_lp_300.h"
+#include "filter.c"

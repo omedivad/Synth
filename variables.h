@@ -35,6 +35,7 @@
 int wave_sel = 0;
 int wave_sel_2 = 0;
 int filter_sel = 0;
+int filter_sel_2 = 0;
 
 // Error handler variables
 int ctrl_var = 0;
@@ -60,6 +61,9 @@ int end = 0;
 // circular arrays (OSC1, OSC2)
 c_queue wave_va;
 c_queue wave_va_2;
+
+c_queue wave_va_flt;
+c_queue wave_va_2_flt;
 
 sem_t wave;
 sem_t wave_2;
