@@ -8,5 +8,10 @@ void error_stamp(int err, int n, char *string){
 		fprintf(fp, "Error: %d \n", string, err);
 		fclose(fp);
 	}
+}
 
+void all_error_stamp(char *string){
+	if(all_ctrl_var != NULL){
+		printf(" %s: %s \n", string, all_ctrl_var);
+	}
 }
