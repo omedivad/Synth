@@ -16,11 +16,11 @@
 #define LPF_C 1
 #define BPF_C 2
 
-// Sampling constants ms
-#define SAMPL 20.833333333333332
-// #define SAMPL 22.675736961451246
+// Sampling constants ns 1000000000.0 / 48000.0
+#define SAMPL 20833.333333333332
+
+// frequency
 #define S_F 48000
-// #define S_F 44100
 
 // Pi
 #define PI 3.14159265359

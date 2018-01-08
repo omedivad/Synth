@@ -20,8 +20,8 @@ static int make_periodic (unsigned int period, struct periodic_info *info)
 		return fd;
 
 	/* Make the timer periodic */
-	sec = period/1000000;
-	ns = (period - (sec * 1000000)) * 1000;
+	sec = period/1000000000;
+	ns = (period - (sec * 1000000000));
 	itval.it_interval.tv_sec = sec;
 	itval.it_interval.tv_nsec = ns;
 	itval.it_value.tv_sec = sec;

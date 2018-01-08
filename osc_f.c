@@ -1,6 +1,8 @@
 void *osc_f(void *arg){	
 	struct periodic_info info;
-	struct timespec t, t_1;
+	struct timeval tv, tv_1; 
+	long long unsigned time_start;
+	float global_t;
 	// global clock
 	float val, val_2;
 	float freq, ff, ff_2;
@@ -8,19 +10,32 @@ void *osc_f(void *arg){
 	int sel_2 = 0;
 	int amp, amp_2, ptc, ptc_2;
 	float x = 0;
+	double gloabal_t = 0;
 
 	make_periodic(SAMPL, &info);
 
 	printf("osc thread started \n");
+
+	gettimeofday(&tv, NULL);
+	time_start = (unsigned long long)(tv.tv_sec) * 1000 + (unsigned long long)(tv.tv_usec) / 1000;
 
 	// generating sample increment
 	while (end == 0){
 
 		if(hold == 1){
 			x = x + (1.0 / 48000.0);
+			gettimeofday(&tv_1, NULL);
+			global_t = (float)(((unsigned long long)(tv_1.tv_sec) * 1000 + (unsigned long long)(tv_1.tv_usec) / 1000) - time_start) / 1000;
+
+ 			printf("%lf time\n", global_t);
+
 		}
 		if(hold == 0){
 			x = 0;
+			// gettimeofday(&tv, NULL);
+			// time_start = (unsigned long long)(tv.tv_sec) * 1000 + (unsigned long long)(tv.tv_usec) / 1000;
+  			global_t = 0;
+
 		}
 		
 		// copying global data to local variables
@@ -53,10 +68,14 @@ void *osc_f(void *arg){
 		// wave generator
 		switch(sel){
 			case 0:
-				val = amp * sin(2 * PI * ff * x);
+				val = amp * sin(2 * PI * x * ff);
 				break;
 			case 1:
-				// traingular wave gen here
+				if(sin(2 * PI * ff * x) > 0){
+					val = 1;
+				}else{
+					val = 0;
+				}
 				break;
 			case 2:
 				val = amp * fmod(x, 1 / ff) * ff;
@@ -67,7 +86,11 @@ void *osc_f(void *arg){
 				val_2 = amp_2 * sin(2 * PI * ff_2 * x);
 				break;
 			case 1:
-				val_2 = amp_2 * fmod(x, 1 / ff_2) * ff_2;
+				if(sin(2 * PI * ff_2 * x) > 0){
+					val_2 = amp_2 * 1;
+				}else{
+					val_2 = amp_2 * 0;
+				}
 				break;
 			case 2:
 				val_2 = amp_2 * fmod(x, 1 / ff_2) * ff_2;

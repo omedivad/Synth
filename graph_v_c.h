@@ -7,6 +7,8 @@
 #define XLOR_1	400
 #define YLOR_1	226
 #define XOSC_2  400
+#define BTT2	150
+#define BUFFER_LEN_G 400
 
 // GRAPHICAL VARAIBLES & POINTERS
 

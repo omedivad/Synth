@@ -1,4 +1,17 @@
 // buffer lenght
-#define BUFFER_LEN 400
+#define BUFFER_LEN 2048
 #define BUFFER_LEN_AUDIO 10
-#define LATENCY_MS 500
+#define F_SAMPL 48000
+
+#define AUDIO_FRAG 8
+
+ALLEGRO_SAMPLE *sample=NULL;
+ALLEGRO_SAMPLE *sam=NULL;
+ALLEGRO_AUDIO_STREAM *stream;
+ALLEGRO_AUDIO_DEPTH chan_conf = ALLEGRO_CHANNEL_CONF_2;
+ALLEGRO_AUDIO_DEPTH depth = ALLEGRO_AUDIO_DEPTH_FLOAT32;
+ALLEGRO_VOICE* voice_1;
+ALLEGRO_MIXER* mixer_1;
+int sample_size;  
+int samples = BUFFER_LEN;
+int frequency = 48000;

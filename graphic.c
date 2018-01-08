@@ -11,7 +11,7 @@ void *graphic_f(void *arg){
 
   al_set_target_bitmap(al_get_backbuffer(display));
 
-  make_periodic(41.666666666666664, &info_1);
+  make_periodic(33333333.333333332, &info_1);
 
   ALLEGRO_FONT *font_title = al_load_ttf_font("arial.ttf",24,0);
   ALLEGRO_FONT *font_section = al_load_ttf_font("arial.ttf",15,0);
@@ -71,7 +71,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2, XUPL_1 + 285, YUPL_1 + 22, nero);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2, XUPL_1 + 380, YUPL_1 + 22, nero);
         al_draw_text(font_section, nero, XUPL_1 + 100, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
       if(wave_sel == 1){
@@ -79,7 +79,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2, XUPL_1 + 285, YUPL_1 + 22, giallo);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2, XUPL_1 + 380, YUPL_1 + 22, nero);
         al_draw_text(font_section, bianco, XUPL_1 + 100, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, nero, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, nero, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
       if(wave_sel == 2){
@@ -87,7 +87,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5, YUPL_1 + 2, XUPL_1 + 285, YUPL_1 + 22, nero);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2, XUPL_1 + 380, YUPL_1 + 22, giallo);
         al_draw_text(font_section, bianco, XUPL_1 + 100, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, nero, XUPL_1 + 295, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
     sem_post(&wave_sel_s);
@@ -97,7 +97,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22, nero);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22, nero);
         al_draw_text(font_section, nero, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, bianco, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
       if(wave_sel_2 == 1){
@@ -105,7 +105,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22, giallo);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22, nero);
         al_draw_text(font_section, bianco, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, nero, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, nero, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, bianco, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
       if(wave_sel_2 == 2){
@@ -113,7 +113,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 190 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 285 + XOSC_2 , YUPL_1 + 22, nero);
         al_draw_filled_rectangle(XUPL_1 + 285 + 5 + XOSC_2, YUPL_1 + 2, XUPL_1 + 380 + XOSC_2, YUPL_1 + 22, giallo);
         al_draw_text(font_section, bianco, XUPL_1 + 100 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Sine");
-        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Triangular");
+        al_draw_text(font_section, bianco, XUPL_1 + 200 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Square");
         al_draw_text(font_section, nero, XUPL_1 + 295 + XOSC_2, YUPL_1 + 2, ALLEGRO_ALIGN_LEFT, "Saw");
       }
     sem_post(&wave_sel_2_s);
@@ -189,7 +189,7 @@ void *graphic_f(void *arg){
         al_draw_filled_rectangle(XUPL_1 + 285 + 5, YUPL_1 + 2 + BTT2, XUPL_1 + 380, YUPL_1 + 22 + BTT2, nero);
         al_draw_text(font_section, nero, XUPL_1 + 100, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "No filter");
         al_draw_text(font_section, bianco, XUPL_1 + 200, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "HPF");
-        al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "Saw");
+        al_draw_text(font_section, bianco, XUPL_1 + 295, YUPL_1 + 2 + BTT2, ALLEGRO_ALIGN_LEFT, "LPF");
       }
       if(filter_sel == 1){
         al_draw_filled_rectangle(XUPL_1 + 95, YUPL_1 + 2 + BTT2, XUPL_1 + 190, YUPL_1 + 22 + BTT2, nero);
@@ -235,14 +235,14 @@ void *graphic_f(void *arg){
       }
     sem_post(&filter_2_s);
 
-    for(int i = 0; i<=BUFFER_LEN; i++){
-      c = wave_va.head + i % BUFFER_LEN;
-      al_draw_circle(400 - i, 400 + 100 * - extract_CA(&wave_va_flt), 1, bianco, 1);
+    for(int i = 0; i<=BUFFER_LEN_G; i++){
+      c = (wave_va.head + i) % BUFFER_LEN;
+      al_draw_circle(400 - i, 400 + 100 * - extract_n_CA(&wave_va_flt, c), 1, bianco, 1);
     }
 
-    for(int i = 0; i<=BUFFER_LEN; i++){
-      c = wave_va_2.head + i % BUFFER_LEN;
-      al_draw_circle(400 + 400 - i, 400 + 100 * -extract_CA(&wave_va_2_flt), 1, bianco, 1);
+    for(int i = 0; i<=BUFFER_LEN_G; i++){
+      c = (wave_va_2.head + i) % BUFFER_LEN;
+      al_draw_circle(400 + 400 - i, 400 + 100 * - extract_n_CA(&wave_va_2_flt, c), 1, bianco, 1);
     }
 
     al_flip_display();

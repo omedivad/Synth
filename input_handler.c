@@ -10,7 +10,7 @@ void *handler_f(void *arg){
 
 	printf("%s\n","handler started" );
 
-	make_periodic(30, &info);
+	make_periodic(30000, &info);
 	while(end == 0){
 
 		// handling dropdown menu
