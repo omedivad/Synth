@@ -8,8 +8,9 @@ void init_CA(c_queue *a){
 	a->head = 0;
 	a->tail = 0;
 	a->num = 0;
-	sem_init(&a->emp, 0, 0);
 	sem_init(&a->mtx, 0, 1);
+	// avoid extraction when the queue is empty
+	sem_init(&a->emp, 0, 0);
 }
 
 void insert_CA(c_queue *a, float elem){

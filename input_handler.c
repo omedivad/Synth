@@ -1,273 +1,311 @@
+#include "command.c"
 void *handler_f(void *arg){
 	ALLEGRO_MOUSE_STATE state;
-	struct periodic_info info;
 	float mouse_old = 0;
 	float mouse_old_2 = 0;
 	int press = 0;
 	int press_2 = 0;
 	int press_11 = 0;
 	int press_22 = 0;
+	int end_l = 0;
+	int c_v = 0;
 
-	printf("%s\n","handler started" );
+	while(end_l == 0){
 
-	make_periodic(30000, &info);
-	while(end == 0){
-
-		// handling dropdown menu
-		// al_wait_for_event_timed(event_queue, &ev, 0.03);
+		// handling OSC 1 buttons
 		al_wait_for_event(event_queue, &ev);
 
+	   	// Handle SINE button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 95 < ev.mouse.x && ev.mouse.x < XUPL_1 + 190 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
 		    sem_wait(&wave_sel_s);
-		    	wave_sel = 0;
+		    	wave_sel = SIN;
 		    sem_post(&wave_sel_s);
 		}
+		// Handle SQUARE button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 195 < ev.mouse.x && ev.mouse.x < XUPL_1 + 285 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
 		    sem_wait(&wave_sel_s);
-		    	wave_sel = 1;
+		    	wave_sel = SQR;
 		    sem_post(&wave_sel_s);
 		}
+		// Handle SAWTOOTH button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 290 < ev.mouse.x && ev.mouse.x < XUPL_1 + 380 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
 		    sem_wait(&wave_sel_s);
-		    	wave_sel = 2;
+		    	wave_sel = SAW;
 		    sem_post(&wave_sel_s);
 		}
+		// Handle NOISE button 
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 95 < ev.mouse.x && ev.mouse.x < XUPL_1 + 190 && YUPL_1 + 26 < ev.mouse.y && ev.mouse.y < YUPL_1 + 46) {
+		    sem_wait(&wave_sel_s);
+		    	wave_sel = NSE;
+		    sem_post(&wave_sel_s);
+		}
+		// Handle SINE button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 495 < ev.mouse.x && ev.mouse.x < XUPL_1 + 590 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
+		   // Mouse button
 		    sem_wait(&wave_sel_2_s);
-		    	wave_sel_2 = 0;
+		    	wave_sel_2 = SIN;
 		    sem_post(&wave_sel_2_s);
 		}
+		// Handle SQUARE button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 595 < ev.mouse.x && ev.mouse.x < XUPL_1 + 685 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
 		    sem_wait(&wave_sel_2_s);
-		    	wave_sel_2 = 1;
+		    	wave_sel_2 = SQR;
 		    sem_post(&wave_sel_2_s);
 		}
+		// Handle SAWTOOTH button 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 690 < ev.mouse.x && ev.mouse.x < XUPL_1 + 780 && YUPL_1 + 2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22) {
-		    /* Primary (e.g. left) mouse button is held. */
 		    sem_wait(&wave_sel_2_s);
-		    	wave_sel_2 = 2;
+		    	wave_sel_2 = SAW;
 		    sem_post(&wave_sel_2_s);
+		}
+		// Handle NOISE button 
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 495 < ev.mouse.x && ev.mouse.x < XUPL_1 + 590 && YUPL_1 + 26 < ev.mouse.y && ev.mouse.y < YUPL_1 + 46) {
+		    sem_wait(&wave_sel_s);
+		    	wave_sel_2 = NSE;
+		    sem_post(&wave_sel_s);
 		}
 
 		// handling volume 1 knob
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.y <= sqrt(pow(20, 2)- pow(ev.mouse.x - 350, 2)) + 100 && ev.mouse.y >= - sqrt(pow(20, 2)- pow(ev.mouse.x - 350, 2)) + 100 && press != 1) {
-		    /* Primary (e.g. left) mouse button is held. */
+		    // MOUSE CLICKED
 		    al_get_mouse_state(&state);
 		    press = 1;
-		    mouse_old = -state.y;
-		    printf("%d mouse old \n", mouse_old);
+		    mouse_old = state.y;
 		}
 
 		if(press == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&amplitude_s);
-		    	amplitude = amplitude - (float)state.y - mouse_old;
+		    	amplitude = amplitude - ((float)state.y - mouse_old) / 800.0;
 		    	if (amplitude >= 1) amplitude = 1;
 		    	if (amplitude <= 0) amplitude = 0;
 	    	sem_post(&amplitude_s);
-		    mouse_old = -state.y;
-		    printf("%f mouse old \n", mouse_old);
-		    printf("%d\n", press);
-		    sem_wait(&amplitude_s);
-		    	printf("%f amplitude\n", amplitude);
-	    	sem_post(&amplitude_s);
-		    printf("%d\n", -state.y);
+	    	// MOUSE RELEASED
 		    if(!al_mouse_button_down(&state, 1)){
 	    		press = 0;
-	    		printf("%d\n", press);
 			}
 		}
 
 		//handling vol 2 knob
-
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.y <= sqrt(pow(20, 2)- pow(ev.mouse.x - (400 + 350), 2)) + 100 && ev.mouse.y >= - sqrt(pow(20, 2)- pow(ev.mouse.x - (400 + 350), 2)) + 100 && press_2 != 1) {
-		    /* Primary (e.g. left) mouse button is held. */
+		    // MOUSE CLICKED
 		    al_get_mouse_state(&state);
 		    press_2 = 1;
-		    mouse_old_2 = -state.y;
-		    printf("%d mouse old \n", mouse_old_2);
+		    mouse_old_2 = state.y;
 		}
 
 		if(press_2 == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&amplitude_2_s);
-		    	amplitude_2 = amplitude_2 - (state.y + mouse_old_2);
+		    	amplitude_2 = amplitude_2 - ((float)state.y - mouse_old) / 800.0;
 		    	if (amplitude_2 >= 1.0) amplitude_2 = 1.0;
 		    	if (amplitude_2 <= 0.0) amplitude_2 = 0.0;
 	    	sem_post(&amplitude_2_s);
-		    mouse_old_2 = -state.y;
-		    printf("%d mouse old \n", mouse_old_2);
-		    printf("%d\n", press_2);
-		    sem_wait(&amplitude_2_s);
-		    	printf("%d amplitude_2\n", amplitude_2);
-	    	sem_post(&amplitude_2_s);
-		    printf("%d\n", -state.y);
+	    	// MOUSE RELEASED
 		    if(!al_mouse_button_down(&state, 1)){
 	    		press_2 = 0;
-	    		printf("%d\n", press_2);
 			}
 		}
 
 		// handling pitch 1 knob
-
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.y <= sqrt(pow(20, 2)- pow(ev.mouse.x - 250, 2)) + 100 && ev.mouse.y >= - sqrt(pow(20, 2)- pow(ev.mouse.x - 250, 2)) + 100 && press_11 != 1) {
-		    /* Primary (e.g. left) mouse button is held. */
+		    // MOUSE CLICKED
 		    al_get_mouse_state(&state);
 		    press_11 = 1;
-		    mouse_old = -state.y;
-		    printf("%d mouse old \n", mouse_old);
+		    mouse_old = state.y;
 		}
 
 		if(press_11 == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&pitch_s);
-		    	pitch = pitch - state.y - mouse_old;
+		    	pitch = pitch - ((float)state.y - mouse_old) / (800.0 / 11.0);
 		    	if (pitch >= 11) pitch = 11;
 		    	if (pitch < 1) pitch = 1;
 	    	sem_post(&pitch_s);
-		    mouse_old = -state.y;
-		    printf("%d mouse old \n", mouse_old);
-		    printf("%d\n", press_11);
-		    sem_wait(&pitch_s);
-		    	printf("%d pitch\n", pitch);
-	    	sem_post(&pitch_s);
-		    printf("%d\n", -state.y);
+	    	// MOUSE RELEASED
 		    if(!al_mouse_button_down(&state, 1)){
 	    		press_11 = 0;
-	    		printf("%d\n", press);
 			}
 		}
 
 		//handling pitch 2 knob
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.y <= sqrt(pow(20, 2)- pow(ev.mouse.x - (400 + 250), 2)) + 100 && ev.mouse.y >= - sqrt(pow(20, 2)- pow(ev.mouse.x - (400 + 250), 2)) + 100 && press_22 != 1) {
-		    /* Primary (e.g. left) mouse button is held. */
+		   	// MOUSE CLICKED
 		    al_get_mouse_state(&state);
 		    press_22 = 1;
-		    mouse_old_2 = -state.y;
-		    printf("%d mouse old \n", mouse_old_2);
+		    mouse_old_2 = state.y;
 		}
 
 		if(press_22 == 1){
 			al_get_mouse_state(&state);
 			sem_wait(&pitch_2_s);
-		    	pitch_2 = pitch_2 - state.y - mouse_old_2;
+		    	pitch_2 = pitch_2 - ((float)state.y - mouse_old) / (800.0 / 11.0);
 		    	if (pitch_2 >= 11) pitch_2 = 11;
 		    	if (pitch_2 <= 1) pitch_2 = 1;
 	    	sem_post(&pitch_2_s);
-		    mouse_old_2 = -state.y;
-		    printf("%d mouse old \n", mouse_old_2);
-		    printf("%d\n", press_22);
-		    sem_wait(&pitch_2_s);
-		    	printf("%d pitch_2\n", pitch_2);
-	    	sem_post(&pitch_2_s);
-		    printf("%d\n", -state.y);
+	    	// MOUSE RELEASED
 		    if(!al_mouse_button_down(&state, 1)){
 	    		press_22 = 0;
-	    		printf("%d\n", press_2);
 			}
 		}
 
-		// filter button hanfling
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 95 < ev.mouse.x && ev.mouse.x < XUPL_1 + 190 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// filter button handling
+		//OSC 1
+		// NO FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 95 < ev.mouse.x && ev.mouse.x < XUPL_1 + 190 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_s);
-		    	filter_sel = 0;
+		    	filter_sel = NFLT;
 		    sem_post(&filter_s);
 		}
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 195 < ev.mouse.x && ev.mouse.x < XUPL_1 + 285 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// HIGH PASS FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 195 < ev.mouse.x && ev.mouse.x < XUPL_1 + 285 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_s);
-		    	filter_sel = 1;
+		    	filter_sel = HPF;
 		    sem_post(&filter_s);
 		}
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 290 < ev.mouse.x && ev.mouse.x < XUPL_1 + 380 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// LOW PASS FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 290 < ev.mouse.x && ev.mouse.x < XUPL_1 + 380 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_s);
-		    	filter_sel = 2;
+		    	filter_sel = LPF;
 		    sem_post(&filter_s);
 		}
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 495 < ev.mouse.x && ev.mouse.x < XUPL_1 + 590 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// OSC 2
+		// NO FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 495 < ev.mouse.x && ev.mouse.x < XUPL_1 + 590 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_2_s);
-		    	filter_sel_2 = 0;
+		    	filter_sel_2 = NFLT;
 		    sem_post(&filter_2_s);
 		}
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 595 < ev.mouse.x && ev.mouse.x < XUPL_1 + 685 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// HIGH PASS FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 595 < ev.mouse.x && ev.mouse.x < XUPL_1 + 685 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_2_s);
-		    	filter_sel_2 = 1;
+		    	filter_sel_2 = HPF;
 		    sem_post(&filter_2_s);
 		}
-		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 690 < ev.mouse.x && ev.mouse.x < XUPL_1 + 780 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22  + BTT2) {
-		    /* Primary (e.g. left) mouse button is held. */
+		// LOW PASS FILTER
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 690 < ev.mouse.x && ev.mouse.x < XUPL_1 + 780 && YUPL_1 + 2 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 22 + BTT2) {
 		    sem_wait(&filter_2_s);
-		    	filter_sel_2 = 2;
+		    	filter_sel_2 = LPF;
 		    sem_post(&filter_2_s);
+		}
+
+		// draw wave handling
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP && XUPL_1 + 5 < ev.mouse.x && ev.mouse.x < XUPL_1 + 95 && YUPL_1 + 60 + BTT2 < ev.mouse.y && ev.mouse.y < YUPL_1 + 82 + BTT2) {
+		    if(draw_wave == 0){
+			    sem_wait(&draw_wave_s);
+			    	draw_wave = 1;
+			    sem_post(&draw_wave_s);
+			}else{
+				sem_wait(&draw_wave_s);
+			    	draw_wave = 0;
+			    sem_post(&draw_wave_s);
+			}
 		}
 
 		// handling keyboard note
-
 		if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			switch(ev.keyboard.keycode) {
 				case ALLEGRO_KEY_A:
 					sem_wait(&wave_f_s);
-						wave_f = 261.63; // DO
+						wave_f = 262; 		// DO
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 					case ALLEGRO_KEY_S:
 					sem_wait(&wave_f_s);
-						wave_f = 293.66; // RE
+						wave_f = 294; 		// RE
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_D:
 					sem_wait(&wave_f_s);
-						wave_f = 329.63; // MI
+						wave_f = 330; 		// MI
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_F:
 					sem_wait(&wave_f_s);
-						wave_f = 349.23; // FA
+						wave_f = 349;		// FA
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_G:
 					sem_wait(&wave_f_s);
-						wave_f = 392.00; // SOL
+						wave_f = 392.00; 	// SOL
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_H:
 					sem_wait(&wave_f_s);
-						wave_f = 440.00; // LA
+						wave_f = 440.00; 	// LA
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_J:
 					sem_wait(&wave_f_s);
-						wave_f = 493.88; // SI
+						wave_f = 494; 		// SI
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_K:
 					sem_wait(&wave_f_s);
-						wave_f = 523.25; // DO
+						wave_f = 523; 		// DO
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_L:
 					sem_wait(&wave_f_s);
-						wave_f = 587.33; // RE
+						wave_f = 587;		// RE
 						hold = 1;
 				   	sem_post(&wave_f_s);
+				   	break;
+			   	case ALLEGRO_KEY_W:
+			   		sem_wait(&wave_f_s);
+						wave_f = 277;		// DO#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_E:
+			   		sem_wait(&wave_f_s);
+						wave_f = 311;		// RE#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_T:
+			   		sem_wait(&wave_f_s);
+						wave_f = 370;		// FA#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_Y:
+			   		sem_wait(&wave_f_s);
+						wave_f = 415;		// SOL#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_U:
+			   		sem_wait(&wave_f_s);
+						wave_f = 466;		// LA#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_O:
+			   		sem_wait(&wave_f_s);
+						wave_f = 554;		// DO#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_P:
+			   		sem_wait(&wave_f_s);
+						wave_f = 622;		// RE#
+						hold = 1;
+				   	sem_post(&wave_f_s);
+				   	break;
+				case ALLEGRO_KEY_ESCAPE:
+			   		sem_wait(&end_s);
+		    			end = 1;
+		    		sem_post(&end_s);
 				   	break;
 			}
       	}
@@ -277,11 +315,17 @@ void *handler_f(void *arg){
       	}
 
 		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-		    end = 1;
+			sem_wait(&end_s);
+		    	end = 1;
+		    sem_post(&end_s);
 		    break;
 		}
+
+		sem_wait(&end_s);
+      		end_l = end;
+    	sem_post(&end_s);
 	}
+	error_stamp(c_v, 0, "b_1");
 
 	al_destroy_event_queue(event_queue);
-	wait_period(&info);
 }

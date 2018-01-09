@@ -17,9 +17,6 @@
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
 
-#include <alsa/asoundlib.h>
-#include <alsa/pcm.h>
-
 #include "audio.h"
 #include "graph_v_c.h"
 #include "periodic.c"
