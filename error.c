@@ -1,5 +1,4 @@
 void error_stamp(int err, int n, char *string){
-	// pointer to log file
 	if(err != n){
 		FILE *fp;
 		fp = fopen("log.txt", "w+");
