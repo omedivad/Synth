@@ -78,8 +78,8 @@ void *filter_f(void *arg){
 		sem_post(&filter_2_s);
 
 		sem_wait(&end_s);
-      		end_l = end;
-    	sem_post(&end_s);
+      			end_l = end;
+		sem_post(&end_s);
 
 		wait_period(&info);
 	}
