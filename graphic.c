@@ -185,16 +185,16 @@ void *graphic_f(void *arg){
 
     // frequency
     sem_wait(&wave_f_s);
-    sem_wait(&pitch_s);
-      al_draw_filled_rectangle(2, 51, 92, 65, grigio);
-      al_draw_textf(font_section, bianco, XUPL_1 + 2, YUPL_1 + 25, ALLEGRO_ALIGN_LEFT,"%.2f Hz", wave_f * pitch);
-    sem_post(&pitch_s);
+      sem_wait(&pitch_s);
+        al_draw_filled_rectangle(2, 51, 92, 65, grigio);
+        al_draw_textf(font_section, bianco, XUPL_1 + 2, YUPL_1 + 25, ALLEGRO_ALIGN_LEFT,"%.2f Hz", wave_f * pitch);
+      sem_post(&pitch_s);
     sem_post(&wave_f_s);
     sem_wait(&wave_f_s);
-    sem_wait(&pitch_2_s);
-      al_draw_filled_rectangle(400 + 2, 51, 400 + 92, 65, grigio);
-      al_draw_textf(font_section, bianco, XUPL_1 + 2 + 400, YUPL_1 + 25, ALLEGRO_ALIGN_LEFT,"%.2f Hz", wave_f * pitch_2);
-    sem_post(&pitch_2_s);
+      sem_wait(&pitch_2_s);
+        al_draw_filled_rectangle(400 + 2, 51, 400 + 92, 65, grigio);
+        al_draw_textf(font_section, bianco, XUPL_1 + 2 + 400, YUPL_1 + 25, ALLEGRO_ALIGN_LEFT,"%.2f Hz", wave_f * pitch_2);
+      sem_post(&pitch_2_s);
     sem_post(&wave_f_s);
 
     // pitch 1 knob
