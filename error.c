@@ -19,7 +19,7 @@ void all_error(char * string){
 	}
 	printf("%s \n", string);
 	fprintf(fp, "%s \n", string);
-    sem_wait(&end_s);
-      end = 1;
-    sem_post(&end_s);
+	sem_wait(&end_s);
+		end = 1;
+	sem_post(&end_s);
 }
