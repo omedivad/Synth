@@ -35,9 +35,9 @@ int main(void){
 
 	// initialize graphic
 	// FILE "circular_array.c"
-    all_init();
+	all_init();
 
-    // set attr for rt threads
+	// set attr for rt threads
 	init_hrt_attr(&hrt_attr, &hrt_param, 99);
 	init_hrt_attr_d(&hrtd_attr, &hrtd_param, 99);
 	init_hrt_attr(&rt_attr, &rt_param, 80);
