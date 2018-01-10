@@ -1,18 +1,26 @@
 # Synth
 A basic synth
 
-Control frequency with keyboard
+## Keyboard commands
 A -> DO
-s -> RE
+
+S -> RE
+
 D -> MI
+
 F -> FA
+
 G -> SOL
+
 H -> LA
+
 J -> SI
+
 K -> DO
+
 L -> RE
 
-Instructions
+## How to install
 
 Open the terminal and navigate to the folder Synth, then type:
 
@@ -22,7 +30,7 @@ Open the terminal and navigate to the folder Synth, then type:
 
 	# ./synth
 
-Requirements
+## Requirements
 
 liballegro 5
 	https://github.com/liballeg/allegro5
