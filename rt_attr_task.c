@@ -1,7 +1,7 @@
 void init_hrt_attr(pthread_attr_t *rt_attr, struct sched_param *hrt_param, int n){
 	int ctrl_var = 0;
 	int policy = SCHED_RR;
-		// //initialize task attribute
+	// //initialize task attribute
 	ctrl_var = pthread_attr_init(rt_attr);
 	error_stamp(ctrl_var, 0, "pthread_attr_init");
 
@@ -23,7 +23,7 @@ void init_hrt_attr(pthread_attr_t *rt_attr, struct sched_param *hrt_param, int n
 void init_hrt_attr_d(pthread_attr_t *rt_attr, struct sched_param *hrt_param, int n){
 	int ctrl_var = 0;
 	int policy = SCHED_RR;
-		// //initialize task attribute
+	// //initialize task attribute
 	ctrl_var = pthread_attr_init(rt_attr);
 	error_stamp(ctrl_var, 0, "pthread_attr_init");
 
