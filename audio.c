@@ -5,7 +5,7 @@ void *audio_f(void *arg){
 	ALLEGRO_EVENT_QUEUE *queue;
 	int end_l = 0;
 
-    al_attach_audio_stream_to_mixer(stream, al_get_default_mixer());
+	al_attach_audio_stream_to_mixer(stream, al_get_default_mixer());
 	
 	make_periodic(SAMPL, &info);
 
@@ -29,13 +29,13 @@ void *audio_f(void *arg){
 				buffer[i] = wave_final;
 				// buffer[i] = (short)(wave_final * 32767); // cast from FLOAT32 to INT16s
 			}
-			if (!al_set_audio_stream_fragment(stream, buffer)) {
-		    	printf("Error setting stream fragment.\n");
+			if (!al_set_audio_stream_fragment(stream, buffer)){
+		    		printf("Error setting stream fragment.\n");
 		 	}
 		}
 		sem_wait(&end_s);
-      		end_l = end;
-    	sem_post(&end_s);
+      			end_l = end;
+    		sem_post(&end_s);
 
 		wait_period(&info);
 	}
