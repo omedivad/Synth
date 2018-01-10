@@ -1,7 +1,7 @@
 void *audio_f(void *arg){
 	struct periodic_info info;
 	float *buffer;
-	float wave_1, wave_2;
+	float wave_1, wave_2, wave_final;
 	ALLEGRO_EVENT_QUEUE *queue;
 	int end_l = 0;
 
@@ -16,7 +16,6 @@ void *audio_f(void *arg){
 
 	while(end_l == 0){
 
-		sem_wait(&sync_2_s);
 		ALLEGRO_EVENT aud_eve;
 		al_wait_for_event(queue, &aud_eve);
 
@@ -26,7 +25,9 @@ void *audio_f(void *arg){
 			for (int i = 0; i < samples; i++){
 				wave_1 = extract_CA(&wave_va_flt);
 				wave_2 = extract_CA(&wave_va_2_flt);
-				buffer[i] =  wave_1 + wave_2;
+				wave_final = ((wave_1 + wave_2) / 2);
+				buffer[i] = wave_final;
+				// buffer[i] = (short)(wave_final * 32767); // cast from FLOAT32 to INT16s
 			}
 			if (!al_set_audio_stream_fragment(stream, buffer)) {
 		    	printf("Error setting stream fragment.\n");

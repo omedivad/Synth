@@ -212,7 +212,7 @@ void *handler_f(void *arg){
 						hold = 1;
 				   	sem_post(&wave_f_s);
 				   	break;
-					case ALLEGRO_KEY_S:
+				case ALLEGRO_KEY_S:
 					sem_wait(&wave_f_s);
 						wave_f = 294; 		// RE
 						hold = 1;

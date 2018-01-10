@@ -11,16 +11,13 @@ int filter_sel = 0;
 int filter_sel_2 = 0;
 
 // Values variables
-float amplitude;
-float amplitude_2;
+float amplitude = 0;
+float amplitude_2 = 0;
 float pitch = 1;
 float pitch_2 = 1;
 
 // frequency Hz
-float wave_f = 440;
-
-// global clock
-long long unsigned int global_t;
+float wave_f = 0;
 
 // circular arrays OSC1, OSC2, filter1, filter2
 // FILE "circular_array.c"
@@ -35,9 +32,9 @@ sem_t wave_s;
 sem_t wave_2;
 sem_t pitch_s;
 sem_t filter_s;
+sem_t filter_2_s;
 sem_t wave_f_s;
 sem_t pitch_2_s;
-sem_t filter_2_s;
 sem_t wave_sel_s;
 sem_t amplitude_s;
 sem_t draw_wave_s;

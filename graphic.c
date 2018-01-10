@@ -296,17 +296,17 @@ void *graphic_f(void *arg){
     sem_wait(&draw_wave_s);
       if(draw_wave == 1){
         for(int i = 0; i<=BUFFER_LEN_G; i++){
-          c = (wave_va.head + i) % BUFFER_LEN;
+          c = (wave_va_flt.head + i) % BUFFER_LEN;
           al_draw_circle(400 - i, 350 + 80 * - extract_n_CA(&wave_va_flt, c), 1, bianco, 1);
         }
         // draw wave 2
         for(int i = 0; i<=BUFFER_LEN_G; i++){
-          c = (wave_va_2.head + i) % BUFFER_LEN;
+          c = (wave_va_2_flt.head + i) % BUFFER_LEN;
           al_draw_circle(400 + 400 - i, 350 + 80 * - extract_n_CA(&wave_va_2_flt, c), 1, bianco, 1);
         }
         for(int i = 0; i<=BUFFER_LEN_G * 2; i++){
-          c = (wave_va.head + i) % BUFFER_LEN;
-          c_2 = (wave_va_2.head + i) % BUFFER_LEN;
+          c = (wave_va_flt.head + i) % BUFFER_LEN;
+          c_2 = (wave_va_2_flt.head + i) % BUFFER_LEN;
           al_draw_circle(400 + 400 - i, 550 + 80 * - (extract_n_CA(&wave_va_flt, c) + extract_n_CA(&wave_va_2_flt, c_2)) / 2.0, 1, bianco, 1);
         }
       }

@@ -18,6 +18,7 @@ int main(void){
 	init_CA(&wave_va_flt);
 	init_CA(&wave_va_2_flt);
 
+
 	// initialize semaphores
 	sem_init(&end_s, 0 , 1);
 	sem_init(&wave_s, 0 , 1);
@@ -64,6 +65,7 @@ int main(void){
 	// destroy attr.s no longer useful
 	ctrl_var = pthread_attr_destroy(&rt_attr);
 	error_stamp(ctrl_var, 0, "Destroy");
+	
 	ctrl_var = pthread_attr_destroy(&hrt_attr);
 	error_stamp(ctrl_var, 0, "b_1");
 

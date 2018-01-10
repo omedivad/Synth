@@ -17,8 +17,7 @@
 #define PI 3.14159265359
 
 // buffer lenght
-#define BUFFER_LEN 600
-#define BUFFER_LEN_AUDIO 2
+#define BUFFER_LEN 4096
 
 // Sampling constants ns 1000000000.0 / 48000.0
 #define SAMPL 20833.333333333332
@@ -26,10 +25,10 @@
 // frequency
 #define F_SAMPL 48000
 
-#define AUDIO_FRAG 8
+#define AUDIO_FRAG 2
 
 ALLEGRO_AUDIO_STREAM *stream;
-ALLEGRO_AUDIO_DEPTH chan_conf = ALLEGRO_CHANNEL_CONF_2;
+ALLEGRO_AUDIO_DEPTH chan_conf = ALLEGRO_CHANNEL_CONF_1;
 ALLEGRO_AUDIO_DEPTH depth = ALLEGRO_AUDIO_DEPTH_FLOAT32; 
-int samples = BUFFER_LEN;
+int samples = BUFFER_LEN; // allow to change the buffer from control screen (for future developement)
 int frequency = 48000;
