@@ -13,13 +13,13 @@ void *command_f(void *arg){
 
 	disp_key = al_create_display(400, 300);
 	if(!disp_key) {
-      all_error("failed to create display!\n");
+		all_error("failed to create display!\n");
 	}
 
 	event_queue_k = al_create_event_queue();
   	if(!event_queue_k) {
-    	all_error("failed to create event_queue!\n");
-    	al_destroy_display(display);
+		all_error("failed to create event_queue!\n");
+		al_destroy_display(display);
   	}
 
   	al_register_event_source(event_queue_k, al_get_display_event_source(disp_key));
@@ -60,13 +60,13 @@ void *command_f(void *arg){
   		al_wait_for_event_timed(event_queue_k, &ev_k, 0.0032);
 
   		if(ev_k.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-		    	end_this_l = 1;
-		    break;
+			end_this_l = 1;
+			break;
 		}
 
 		sem_wait(&end_s);
-      		end_l = end;
-    	sem_post(&end_s);
+      			end_l = end;
+    		sem_post(&end_s);
   	}
   	al_destroy_event_queue(event_queue_k);
   	al_destroy_display(disp_key);
