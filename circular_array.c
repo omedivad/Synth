@@ -25,11 +25,11 @@ void insert_CA(c_queue *a, float elem){
 float extract_CA(c_queue *a){
 	float elem;
 	sem_wait(&a->emp);
-		sem_wait(&a->mtx);
-			elem = a->array[a->tail];
-			a->tail = (a->tail + 1) % BUFFER_LEN;
-			a->num--;
-		sem_post(&a->mtx);
+	sem_wait(&a->mtx);
+		elem = a->array[a->tail];
+		a->tail = (a->tail + 1) % BUFFER_LEN;
+		a->num--;
+	sem_post(&a->mtx);
 	return elem;
 }
 
@@ -51,8 +51,8 @@ void increase_tail(c_queue *a){
 
 float extract_n_CA(c_queue *a, int idx){
 	float elem;
-		sem_wait(&a->mtx);
-			elem = a->array[idx];
-		sem_post(&a->mtx);
+	sem_wait(&a->mtx);
+		elem = a->array[idx];
+	sem_post(&a->mtx);
 	return elem;
 }
