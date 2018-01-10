@@ -28,8 +28,7 @@ c_queue wave_va_2_flt;
 
 // semaphores
 sem_t end_s;
-sem_t wave_s;
-sem_t wave_2;
+sem_t hold_s;
 sem_t pitch_s;
 sem_t filter_s;
 sem_t filter_2_s;
@@ -40,6 +39,3 @@ sem_t amplitude_s;
 sem_t draw_wave_s;
 sem_t wave_sel_2_s;
 sem_t amplitude_2_s;
-// synch thread
-sem_t sync_1_s;
-sem_t sync_2_s;

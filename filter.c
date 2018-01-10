@@ -16,9 +16,9 @@ void *filter_f(void *arg){
 				case HPF:
 					hd = get_tail(&wave_va);
 					tmp = 0;
-					for(int i=0; i<=HBL; i++){
+					for(int i = 0; i <= HBL; i++){
 						// inverse index
-						j = hd - i % BUFFER_LEN;
+						j = (hd - i) % BUFFER_LEN;
 						if(j > 0){
 							tmp += HB[i] * extract_n_CA(&wave_va, j);
 						}
@@ -29,9 +29,9 @@ void *filter_f(void *arg){
 				case LPF:
 					hd = get_tail(&wave_va);
 					tmp = 0;
-					for(int i=0; i<=LBL; i++){
+					for(int i = 0; i <= LBL; i++){
 						// inverse index
-						j = hd - i % BUFFER_LEN;
+						j = (hd - i) % BUFFER_LEN;
 						if(j > 0){
 							tmp += LB[i] * extract_n_CA(&wave_va, j);
 						}
@@ -51,9 +51,9 @@ void *filter_f(void *arg){
 				case HPF:
 					hd = get_tail(&wave_va_2);
 					tmp = 0;
-					for(int i=0; i<=HBL; i++){
+					for(int i = 0; i <= HBL; i++){
 						// inverse index
-						j = hd - i % BUFFER_LEN;
+						j = (hd - i) % BUFFER_LEN;
 						if(j > 0){
 							tmp += HB[i] * extract_n_CA(&wave_va_2, j);
 						}
@@ -64,9 +64,9 @@ void *filter_f(void *arg){
 				case LPF:
 					hd = get_tail(&wave_va_2);
 					tmp = 0;
-					for(int i=0; i<=LBL; i++){
+					for(int i = 0; i <= LBL; i++){
 						// inverse index
-						j = hd - i % BUFFER_LEN;
+						j = (hd - i) % BUFFER_LEN;
 						if(j > 0){
 							tmp += LB[i] * extract_n_CA(&wave_va_2, j);
 						}

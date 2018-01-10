@@ -209,97 +209,129 @@ void *handler_f(void *arg){
 				case ALLEGRO_KEY_A:
 					sem_wait(&wave_f_s);
 						wave_f = 262; 		// DO
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_S:
 					sem_wait(&wave_f_s);
 						wave_f = 294; 		// RE
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_D:
 					sem_wait(&wave_f_s);
 						wave_f = 330; 		// MI
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_F:
 					sem_wait(&wave_f_s);
 						wave_f = 349;		// FA
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_G:
 					sem_wait(&wave_f_s);
 						wave_f = 392.00; 	// SOL
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_H:
 					sem_wait(&wave_f_s);
 						wave_f = 440.00; 	// LA
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_J:
 					sem_wait(&wave_f_s);
 						wave_f = 494; 		// SI
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_K:
 					sem_wait(&wave_f_s);
 						wave_f = 523; 		// DO
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_L:
 					sem_wait(&wave_f_s);
 						wave_f = 587;		// RE
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 			   	case ALLEGRO_KEY_W:
 			   		sem_wait(&wave_f_s);
 						wave_f = 277;		// DO#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_E:
 			   		sem_wait(&wave_f_s);
 						wave_f = 311;		// RE#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_T:
 			   		sem_wait(&wave_f_s);
 						wave_f = 370;		// FA#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_Y:
 			   		sem_wait(&wave_f_s);
 						wave_f = 415;		// SOL#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_U:
 			   		sem_wait(&wave_f_s);
 						wave_f = 466;		// LA#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_O:
 			   		sem_wait(&wave_f_s);
 						wave_f = 554;		// DO#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_P:
 			   		sem_wait(&wave_f_s);
 						wave_f = 622;		// RE#
-						hold = 1;
+						sem_wait(&hold_s);
+							hold = 1;
+						sem_post(&hold_s);
 				   	sem_post(&wave_f_s);
 				   	break;
 				case ALLEGRO_KEY_ESCAPE:
@@ -311,7 +343,9 @@ void *handler_f(void *arg){
       	}
 
       	if(ev.type == ALLEGRO_EVENT_KEY_UP) {
-      		hold = 0;
+      		sem_wait(&hold_s);
+				hold = 0;
+			sem_post(&hold_s);
       	}
 
 		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){

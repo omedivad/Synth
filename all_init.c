@@ -39,6 +39,7 @@ void all_init(){
   }
 
   al_reserve_samples(0);
+  // initializing stream
   stream = al_create_audio_stream(AUDIO_FRAG, samples, F_SAMPL, depth, chan_conf);
   if (!stream) {
          all_error("Could not create an ALLEGRO_AUDIO_STREAM\n");
