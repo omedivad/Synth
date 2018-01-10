@@ -58,8 +58,8 @@ void *osc_f(void *arg){
 		
 		// end to local varialbe
 		sem_wait(&end_s);
-      		end_l = end;
-    	sem_post(&end_s);
+			end_l = end;
+		sem_post(&end_s);
 
 		wait_period(&info);
 	}
