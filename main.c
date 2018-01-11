@@ -25,6 +25,7 @@ int main(void){
 	sem_init(&pitch_s, 0 , 1);
 	sem_init(&wave_f_s, 0 , 1);
 	sem_init(&filter_s, 0 , 1);
+	sem_init(&samples_s, 0 , 1);
 	sem_init(&pitch_2_s, 0 , 1);
 	sem_init(&wave_sel_s, 0 , 1);
 	sem_init(&filter_2_s, 0 , 1);

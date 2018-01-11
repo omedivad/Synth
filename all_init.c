@@ -40,10 +40,12 @@ void all_init(){
 
   al_reserve_samples(0);
   // initializing stream
-  stream = al_create_audio_stream(AUDIO_FRAG, samples, F_SAMPL, depth, chan_conf);
-  if (!stream) {
-         all_error("Could not create an ALLEGRO_AUDIO_STREAM\n");
-  }
+  sem_wait(&samples_s);
+    stream = al_create_audio_stream(AUDIO_FRAG, samples, F_SAMPL, depth, chan_conf);
+    if (!stream) {
+           all_error("Could not create an ALLEGRO_AUDIO_STREAM\n");
+    }
+  sem_post(&samples_s);
 
   // registering events in the queue events
   al_register_event_source(event_queue, al_get_display_event_source(display));

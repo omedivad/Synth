@@ -31,6 +31,7 @@ sem_t end_s;
 sem_t hold_s;
 sem_t pitch_s;
 sem_t filter_s;
+sem_t samples_s;
 sem_t filter_2_s;
 sem_t wave_f_s;
 sem_t pitch_2_s;
