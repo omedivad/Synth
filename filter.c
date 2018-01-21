@@ -34,7 +34,7 @@ void *filter_f(void *arg){
 					//set temp to 0
 					tmp = 0;
 					// loop for the amount of prevoius sample the filter needs
-					for(i = 0; i <= HBL; i++){
+					for(i = 0; i < HBL; i++){
 						// inverse index, note that this forumla avoid calulated index to be negative
 						j = ((hd - i) % BUFFER_LEN + BUFFER_LEN) % BUFFER_LEN;
 						// the first value in the 
@@ -51,7 +51,7 @@ void *filter_f(void *arg){
 				case LPF:
 					hd = get_tail(&wave_flt_l_1);
 					tmp = 0;
-					for(i = 0; i <= LBL; i++){
+					for(i = 0; i < LBL; i++){
 						// inverse index, note that this forumla avoid calulated index to be negative
 						j = ((hd - i) % BUFFER_LEN + BUFFER_LEN) % BUFFER_LEN;
 						//convolution product
@@ -74,7 +74,7 @@ void *filter_f(void *arg){
 				case HPF:
 					hd = get_tail(&wave_flt_l_2);
 					tmp = 0;
-					for(i = 0; i <= HBL; i++){
+					for(i = 0; i < HBL; i++){
 						// inverse index
 						j = ((hd - i) % BUFFER_LEN + BUFFER_LEN) % BUFFER_LEN;
 						if(j > 0){
@@ -87,7 +87,7 @@ void *filter_f(void *arg){
 				case LPF:
 					hd = get_tail(&wave_flt_l_2);
 					tmp = 0;
-					for(i = 0; i <= LBL; i++){
+					for(i = 0; i < LBL; i++){
 						// inverse index
 						j = ((hd - i) % BUFFER_LEN + BUFFER_LEN) % BUFFER_LEN;
 						if(j > 0){
