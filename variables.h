@@ -57,3 +57,6 @@ sem_t amplitude_s;
 sem_t draw_wave_s;
 sem_t wave_sel_2_s;
 sem_t amplitude_2_s;
+
+/*	Truly, some of these semaphores are not needed, beacause there is only one thread that write on the relative shared resource,
+	and one that read. However, sem have been implemented for possible future implementation */

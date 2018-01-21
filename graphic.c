@@ -39,7 +39,7 @@ void *graphic_f(void *arg){
      function to show the applied changes */
 
   // needed to write on backbuffer flip display and write on the second buffer
-  for( int i=0; i<2; i++){
+  for(int i=0; i<2; i++){
     // color all screen with gray
     al_clear_to_color(grigio);
     // Title

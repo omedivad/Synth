@@ -33,7 +33,7 @@ void *audio_f(void *arg){
 			// assigning fragment to buffer array
 			buffer = al_get_audio_stream_fragment(stream);
 
-			for (int i = 0; i < samples; i++){
+			for (i = 0; i < samples; i++){
 				// extraction of OSC1 filtered value
 				wave_1 = extract_CA(&wave_va_flt);
 				// extraction of OSC2 filtered value
