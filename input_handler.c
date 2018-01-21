@@ -9,7 +9,7 @@ void *handler_f(void *arg){
 	int press_22 = 0;
 	int end_l = 0;
 
-	while(end_l == 0){
+	while(end == 0){
 
 		// handling OSC 1 buttons
 		al_wait_for_event(event_queue, &ev);
@@ -202,6 +202,9 @@ void *handler_f(void *arg){
 			}
 		}
 
+		/*	note that in the following two "if" varialble 'hold' is used to let the time value of osc 1 and 2 't' increase as long as
+			the keyboard button is pressed. The variable 't' is used for wave generation (example sin(w*t)) in FILE "wave_gen.c" */
+
 		// handling keyboard note
 		if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			switch(ev.keyboard.keycode) {
@@ -347,6 +350,7 @@ void *handler_f(void *arg){
 			sem_post(&hold_s);
 		}
 
+		// close all tasks
 		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
 			sem_wait(&end_s);
 				end = 1;
@@ -354,9 +358,6 @@ void *handler_f(void *arg){
 			break;
 		}
 
-	sem_wait(&end_s);
-		end_l = end;
-	sem_post(&end_s);
 	}
 
 al_destroy_event_queue(event_queue);

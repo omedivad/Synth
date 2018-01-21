@@ -40,21 +40,22 @@ int main(void){
 
 	// set attr for rt threads
 	init_hrt_attr(&hrt_attr, &hrt_param, 99);
-	init_hrt_attr_d(&hrtd_attr, &hrtd_param, 99);
-	init_hrt_attr(&rt_attr, &rt_param, 80);
+	init_hrt_attr_d(&hrtd_attr, &hrtd_param, 2);
+	init_hrt_attr(&rt_attr, &rt_param, 90);
 
 	//create threads
 	ctrl_var = pthread_create(&osc, &hrt_attr, osc_f, NULL);
 	error_stamp(ctrl_var, 0, "OSCs thread");
 
-	ctrl_var = pthread_create(&gra, &rt_attr, graphic_f, NULL);
-	error_stamp(ctrl_var, 0, "Graphical thread");
-
+	// create tasks
 	ctrl_var = pthread_create(&hdlr, &hrt_attr, handler_f, NULL);
 	error_stamp(ctrl_var, 0, "Handler thread");
 
 	ctrl_var = pthread_create(&flt, &hrt_attr, filter_f, NULL);
 	error_stamp(ctrl_var, 0, "Filters thread");
+
+	ctrl_var = pthread_create(&gra, &rt_attr, graphic_f, NULL);
+	error_stamp(ctrl_var, 0, "Graphical thread");
 
 	ctrl_var = pthread_create(&ado, &hrt_attr, audio_f, NULL);
 	error_stamp(ctrl_var, 0, "Audio thread");
@@ -72,6 +73,7 @@ int main(void){
 	ctrl_var = pthread_attr_destroy(&hrtd_attr);
 	error_stamp(ctrl_var, 0, "Hrtd HEADSHOT MISSED");
 
+	// wait for task to terminate
 	pthread_join(osc, NULL);
 	pthread_join(gra, NULL);
 	pthread_join(hdlr, NULL);

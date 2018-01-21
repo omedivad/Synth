@@ -1,7 +1,8 @@
+// print generic error to log.txt and to standard output
 void error_stamp(int err, int n, char *string){
 	if(err != n){
 		FILE *fp;
-		fp = fopen("log.txt", "w+");
+		fp = fopen("log.txt", "a");
 		if (fp == NULL){
 			printf("Cannot open log.txt\n");
 		}
@@ -11,9 +12,10 @@ void error_stamp(int err, int n, char *string){
 	}
 }
 
+// print allegro error to log.txt and to standard output
 void all_error(char * string){
 	FILE *fp;
-	fp = fopen("log.txt", "w+");
+	fp = fopen("log.txt", "a");
 	if (fp == NULL){
 		printf("Cannot open log.txt\n");
 	}

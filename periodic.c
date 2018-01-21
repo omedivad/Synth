@@ -12,14 +12,14 @@ static int make_periodic (unsigned int period, struct periodic_info *info)
 	int fd;
 	struct itimerspec itval;
 
-	/* Create the timer */
+	// Create the timer
 	fd = timerfd_create (CLOCK_MONOTONIC, 0);
 	info->wakeups_missed = 0;
 	info->timer_fd = fd;
 	if (fd == -1)
 		return fd;
 
-	/* Make the timer periodic */
+	// Make the timer periodic
 	sec = period/1000000000;
 	ns = (period - (sec * 1000000000));
 	itval.it_interval.tv_sec = sec;
@@ -35,8 +35,7 @@ static void wait_period (struct periodic_info *info)
 	unsigned long long missed;
 	int ret;
 
-	/* Wait for the next timer event. If we have missed any the
-	   number is written to "missed" */
+	// Wait for the next timer event. If we have missed any, the number is written to "missed"
 	ret = read (info->timer_fd, &missed, sizeof (missed));
 	if (ret == -1)
 	{
@@ -44,7 +43,7 @@ static void wait_period (struct periodic_info *info)
 		return;
 	}
 
-	/* "missed" should always be >= 1, but just to be sure, check it is not 0 anyway */
+	// "missed" should always be >= 1, but just to be sure, check it is not 0 anyway
 	if (missed > 0)
 		info->wakeups_missed += (missed - 1);
 }

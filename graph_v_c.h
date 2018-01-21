@@ -1,6 +1,7 @@
 //-------------------------------------
 //            Graphical Const         -
 //-------------------------------------
+// grafical constrants, used to draw the view in the graphical task
 #define XWIN          800
 #define YWIN          600
 #define XUPL_1          0
@@ -15,10 +16,11 @@
 #define BUFFER_LEN_G  400
 
 // GRAPHICAL VARAIBLES & POINTERS
+//  init pointer to synth display
 ALLEGRO_DISPLAY *display = NULL;
+// init pointer to credits and instruction display
 ALLEGRO_DISPLAY *disp_key = NULL;
+// init allegro event
 ALLEGRO_EVENT ev;
+// init pointer to allegro event queue
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-
-// control draw wave
-int draw_wave = 0;

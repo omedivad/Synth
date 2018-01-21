@@ -1,7 +1,9 @@
-double wave_gen_f(int sel, double amp, double all_2, double ff, double *val){
+double wave_gen_f(int sel, double amp, double all_2, double ff, float *val){
 
+	// generating waves according to wave selected by user. 'sel' is the selected wave variable
 	switch(sel){
 		case SIN:
+			// generating sine wave
 			if(amp == 0){
 				*val = 0;
 			}else{
@@ -9,6 +11,7 @@ double wave_gen_f(int sel, double amp, double all_2, double ff, double *val){
 			}
 			break;
 		case SQR:
+			// generating sqare wave
 			if(sin(2 * PI * ff * all_2) > 0 && amp != 0){
 				*val = amp * 1;
 			}else{
@@ -16,6 +19,7 @@ double wave_gen_f(int sel, double amp, double all_2, double ff, double *val){
 			}
 			break;
 		case SAW:
+			// generating sawtooth wave
 			if(amp == 0){
 				*val = 0;
 			}else{
@@ -23,6 +27,7 @@ double wave_gen_f(int sel, double amp, double all_2, double ff, double *val){
 			}
 			break;
 		case NSE:
+			// generating white noise
 			if(amp == 0){
 				*val = 0;
 			}else{
