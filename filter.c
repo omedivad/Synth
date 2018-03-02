@@ -32,6 +32,10 @@ void *filter_f(void *arg){
 
 			// osc 1 
 			switch(filter_sel){
+				default:
+					tmp = extract_CA(&wave_flt_l_1);
+					insert_CA(&wave_va_flt, tmp);
+					break;
 				// no filter
 				case NFLT:
 					// pass value from osc to filter buffer to filter to audio out buffer
@@ -76,6 +80,11 @@ void *filter_f(void *arg){
 
 			// osc 1 
 			switch(filter_sel_2){
+				default:
+					tmp = extract_CA(&wave_flt_l_2);
+					insert_CA(&wave_va_2_flt, tmp);
+
+					break;
 				case NFLT:
 					tmp = extract_CA(&wave_flt_l_2);
 					insert_CA(&wave_va_2_flt, tmp);

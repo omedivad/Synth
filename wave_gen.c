@@ -8,6 +8,13 @@ void wave_gen_f(int sel, double amp, double all_2, double ff, float *val){
 
 	// generating waves according to wave selected by user. 'sel' is the selected wave variable
 	switch(sel){
+		default:
+			if(amp == 0){
+				*val = 0;
+			}else{
+				*val = amp * sin(2 * PI * all_2 * ff);
+			}
+			break;
 		case SIN:
 			// generating sine wave
 			if(amp == 0){
