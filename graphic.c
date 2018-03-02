@@ -360,4 +360,6 @@ void *graphic_f(void *arg){
   al_destroy_display(display);
   al_destroy_bitmap(vol);
   al_destroy_bitmap(ptc);
+
+  return NULL;
 }

@@ -377,5 +377,7 @@ void *handler_f(void *arg){
 
 	}
 
-al_destroy_event_queue(event_queue);
+	al_destroy_event_queue(event_queue);
+
+	return NULL;
 }

@@ -45,4 +45,6 @@ void *osc_f(void *arg){
 		// FILE "periodic.c"
 		wait_period(&info);
 	}
+
+	return NULL;
 }

@@ -9,8 +9,10 @@ void init_CA(c_queue *a){
 	// avoid extraction when the queue is empty
 	sem_init(&a->emp, 0, 0);
 	sem_init(&a->full, 0, BUFFER_LEN);
-	for(int index = 0; index++; index < BUFFER_LEN)
+	for(int index = 0; index < BUFFER_LEN; index++)
+	{
 		a->array[index] = 0;
+	}
 }
 
 // insert one element into c_queue type

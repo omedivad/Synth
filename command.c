@@ -95,4 +95,6 @@ void *command_f(void *arg){
   	// destroy
   	al_destroy_event_queue(event_queue_k);
   	al_destroy_display(disp_key);
+
+  	return NULL;
 }

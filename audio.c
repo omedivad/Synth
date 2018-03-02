@@ -65,4 +65,6 @@ void *audio_f(void *arg){
 	// destroy
 	al_destroy_audio_stream(stream);
 	al_uninstall_audio();
+
+	return NULL;
 }

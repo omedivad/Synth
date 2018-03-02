@@ -120,4 +120,6 @@ void *filter_f(void *arg){
 		// wait for task period
 		wait_period(&info);
 	}
+
+	return NULL;
 }
