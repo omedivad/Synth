@@ -24,7 +24,7 @@ L -> RE
 
 Open the terminal and navigate to the folder Synth, then type:
 
-	# make
+	$ make
 	
 ## How to use
 
