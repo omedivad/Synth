@@ -24,10 +24,12 @@ L -> RE
 
 Open the terminal and navigate to the folder Synth, then type:
 
-	$ su
-
 	# make
+	
+## How to use
 
+	$ su
+	
 	# ./synth
 
 ## Requirements
