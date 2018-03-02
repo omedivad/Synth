@@ -1,8 +1,13 @@
-#include "time_press.c"
-#include "wave_gen.c"
+#include "osc_f.h"
+#include "periodic.h"
+#include "audio_var.h"
+#include "circular_array.h"
+#include "variables.h"
+#include "wave_gen.h"
+#include "time_press.h"
 
 void *osc_f(void *arg){
-	float x = 0;
+	// float x = 0;
 	struct periodic_info info;
 	double ff_1, ff_2;
 	float val_1 = 0;

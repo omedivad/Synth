@@ -1,3 +1,17 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_primitives.h>
+#include "circular_array.h"
+#include "variables.h"
+#include "error.h"
+
 // print generic error to log.txt and to standard output
 void error_stamp(int err, int n, char *string){
 	if(err != n){

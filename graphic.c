@@ -1,3 +1,19 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_primitives.h>
+#include "audio_var.h"
+#include "circular_array.h"
+#include "variables.h"
+#include "periodic.h"
+#include "graph_v_c.h"
+
 void *graphic_f(void *arg){
   int hd1, hd2;
   // needed to make task periodic, fo "make_periodic()" from FILE "periodic.c"

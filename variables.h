@@ -1,36 +1,39 @@
+#ifndef VARIABLES_H
+#define VARIABLES_H
+
 //-------------------------------------------
 //			Global Variables          		-
 //-------------------------------------------
 //------------ Control variables ------------
 // used to kill threads
-int end = 0;
+int end;
 // used to know it a button is still pressed
-int hold = 0;
+int hold;
 //--------- Synth control variables ---------
 // store number relative to OSC1 wave type
-int wave_sel = 0;
+int wave_sel;
 // store number relative to OSC2 wave type
-int wave_sel_2 = 0;
+int wave_sel_2;
 // store number relative to OSC1 filter type
-int filter_sel = 0;
+int filter_sel;
 // store number relative to OSC2 filter type
-int filter_sel_2 = 0;
+int filter_sel_2;
 
 //---------- Synth vales variables ----------
 // OSC1 amplitude (0 to 1)
-float amplitude = 0;
+float amplitude;
 // OSC2 amplitude (0 to 1)
-float amplitude_2 = 0;
+float amplitude_2;
 // OSC1 pitch (0 to 4)
-float pitch = 1;
+float pitch;
 // OSC2 pitch (0 to 4)
-float pitch_2 = 1;
+float pitch_2;
 
 // frequency Hz
-float wave_f = 0;
+float wave_f;
 
 // control draw wave
-int draw_wave = 0;
+int draw_wave;
 
 // circular arrays aka shared buffers
 // FILE "circular_array.c"
@@ -60,3 +63,5 @@ sem_t amplitude_2_s;
 
 /*	Truly, some of these semaphores are not needed, beacause there is only one thread that write on the relative shared resource,
 	and one that read. However, sem have been implemented for possible future implementation */
+
+#endif

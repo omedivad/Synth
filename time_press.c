@@ -1,9 +1,16 @@
+// #include <sys/time.h>
+// #include <sys/timeb.h>
+// #include <sys/timerfd.h>
+#include "time_press.h"
+#include "audio_var.h"
+
 double get_time_press(int hold_l){
-	static int flag;
-	static double all;
-	double ns, all_2;
-	time_t sec;
-	struct timespec spec, spec_2;
+	// static int flag;
+	// static double all;
+	// double ns
+	double all_2;
+	// time_t sec;
+	// struct timespec spec, spec_2;
 	static double x = 0;
 	static int release = 0;
 

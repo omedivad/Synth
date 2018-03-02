@@ -1,3 +1,13 @@
+// fdacoefs_hp_300.h contains high pass filter matrix, and the number of previous samples needed
+#include "fdacoefs_hp_300.h"
+// fdacoefs_hp_300.h contains low pass filter matrix, and the number of previous samples needed
+#include "fdacoefs_lp_300.h"
+#include "periodic.h"
+#include "filter.h"
+#include "audio.h"
+#include "circular_array.h"
+#include "variables.h"
+
 void *filter_f(void *arg){
 	struct periodic_info info;
 	make_periodic(SAMPL, &info);

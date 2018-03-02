@@ -1,11 +1,26 @@
-#include "header.h"
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include "audio.h"
+#include "circular_array.h"
+#include "variables.h"
+#include "osc_f.h"
+#include "filter.h"
+#include "handler.h"
+#include "command.h"
+#include "audio.h"
+#include "graphic.h"
+#include "all_init.h"
+#include "variables_init.h"
+#include "rt_attr_task.h"
+#include "error.h"
 
 void init_hrt_attr(pthread_attr_t *rt_attr, struct sched_param *hrt_param, int n);
 void init_allegro(void);
 
 int main(void){
 	int ctrl_var = 0;
-
+	variables_init();
 	// pthreads
 	pthread_t osc, gra, hdlr, flt, ado, comm;
 	pthread_attr_t hrt_attr, rt_attr, hrtd_attr;

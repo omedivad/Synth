@@ -1,3 +1,17 @@
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_primitives.h>
+#include "command.h"
+#include "audio_var.h"
+#include "circular_array.h"
+#include "variables.h"
+#include "graph_v_c.h"
+#include "error.h"
+
 void *command_f(void *arg){
 	int end_this_l = 0;
 	int inc = 14;
@@ -7,10 +21,10 @@ void *command_f(void *arg){
 	ALLEGRO_EVENT_QUEUE *event_queue_k = NULL;
 	// defining allegro fonts to be used
 	ALLEGRO_FONT *font_title = al_load_ttf_font("arial.ttf",24,0);
-	ALLEGRO_FONT *font_section = al_load_ttf_font("arial.ttf",15,0);
+	// ALLEGRO_FONT *font_section = al_load_ttf_font("arial.ttf",15,0);
 	ALLEGRO_FONT *font_command = al_load_ttf_font("arial.ttf",12,0);
 	// defining allegro colors to be used
-	ALLEGRO_COLOR nero = al_map_rgb(0, 0, 0);
+	// ALLEGRO_COLOR nero = al_map_rgb(0, 0, 0);
   	ALLEGRO_COLOR bianco = al_map_rgb(255, 255, 255);
   	ALLEGRO_COLOR grigio = al_map_rgb(51, 51, 51);
 

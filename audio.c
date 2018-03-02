@@ -1,3 +1,13 @@
+#include <allegro5/allegro_audio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <stdio.h>
+#include "audio.h"
+#include "periodic.h"
+#include "audio_var.h"
+#include "circular_array.h"
+#include "variables.h"
+
 void *audio_f(void *arg){
 	struct periodic_info info;
 	float *buffer;

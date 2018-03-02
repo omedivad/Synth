@@ -1,4 +1,10 @@
-double wave_gen_f(int sel, double amp, double all_2, double ff, float *val){
+#include <math.h> 
+#include "wave_gen.h"
+#include "audio.h"
+#include "circular_array.h"
+#include "variables.h"
+
+void wave_gen_f(int sel, double amp, double all_2, double ff, float *val){
 
 	// generating waves according to wave selected by user. 'sel' is the selected wave variable
 	switch(sel){

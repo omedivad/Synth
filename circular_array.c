@@ -1,9 +1,5 @@
-typedef struct Cricular_Array {
-	float array[BUFFER_LEN];
-	int head, tail, num;
-	sem_t emp, mtx, full;
-} c_queue;
-
+#include "circular_array.h"
+#include "variables.h"
 // initialize c_queue type
 void init_CA(c_queue *a){
 	a->head = 0;
@@ -71,7 +67,6 @@ int get_num(c_queue *a){
 
 // increase tail index
 void increase_tail(c_queue *a){
-	int ret;
 	sem_wait(&a->mtx);
 		a->tail = (a->tail + 1) % BUFFER_LEN;
 		a->num--;

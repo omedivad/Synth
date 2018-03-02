@@ -1,10 +1,13 @@
-struct periodic_info
-{
-	int timer_fd;
-	unsigned long long wakeups_missed;
-};
+#include <sys/time.h>
+#include <sys/timeb.h>
+#include <sys/timerfd.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
+#include "periodic.h"
 
-static int make_periodic (unsigned int period, struct periodic_info *info)
+int make_periodic(unsigned int period, struct periodic_info *info)
 {
 	int ret;
 	unsigned int ns;
@@ -30,13 +33,13 @@ static int make_periodic (unsigned int period, struct periodic_info *info)
 	return ret;
 }
 
-static void wait_period (struct periodic_info *info)
+void wait_period(struct periodic_info *info)
 {
 	unsigned long long missed;
 	int ret;
 
 	// Wait for the next timer event. If we have missed any, the number is written to "missed"
-	ret = read (info->timer_fd, &missed, sizeof (missed));
+	ret = read(info->timer_fd, &missed, sizeof (missed));
 	if (ret == -1)
 	{
 		perror ("read timer");

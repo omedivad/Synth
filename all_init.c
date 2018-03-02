@@ -1,3 +1,14 @@
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_primitives.h>
+#include "audio_var.h"
+#include "graph_v_c.h"
+#include "error.h"
+
 void all_init(){
   
   // initialize allegro

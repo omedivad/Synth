@@ -1,3 +1,6 @@
+#ifndef GRAPH_V_C_H
+#define GRAPH_V_C_H
+
 //-------------------------------------
 //            Graphical Const         -
 //-------------------------------------
@@ -17,10 +20,12 @@
 
 // GRAPHICAL VARAIBLES & POINTERS
 //  init pointer to synth display
-ALLEGRO_DISPLAY *display = NULL;
+ALLEGRO_DISPLAY *display;
 // init pointer to credits and instruction display
-ALLEGRO_DISPLAY *disp_key = NULL;
+ALLEGRO_DISPLAY *disp_key;
 // init allegro event
 ALLEGRO_EVENT ev;
 // init pointer to allegro event queue
-ALLEGRO_EVENT_QUEUE *event_queue = NULL;
+ALLEGRO_EVENT_QUEUE *event_queue;
+
+#endif

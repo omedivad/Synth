@@ -1,3 +1,8 @@
+#include <pthread.h>
+#include <sched.h>
+#include "rt_attr_task.h"
+#include "error.h"
+
 // create attribute for joinable tasks
 void init_hrt_attr(pthread_attr_t *rt_attr, struct sched_param *hrt_param, int n){
 	int ctrl_var = 0;
