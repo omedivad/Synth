@@ -1,5 +1,5 @@
 # Synth
-A basic synth
+A basic synth (can plot wave).
 
 ## Keyboard commands
 A -> DO
