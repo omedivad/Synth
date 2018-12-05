@@ -1,5 +1,8 @@
 # Synth
-A basic synth (can plot waves).
+A basic graphical synth (can plot waves).
+Two oscillators, 3 filter each.
+It's a very simply app, thought to make understand influence of wave params on wave form plottend in time domain.
+Enjoy it!
 
 ## Keyboard commands
 A -> DO
